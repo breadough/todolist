@@ -12,48 +12,44 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col col-5">
-                <h2 class="text-center">To do list</h2>
-
-
-                <?php foreach($Tasks as $task) : ?>
-                        <h5>
-                            <form action="{{route('markDone',$task->id)}}" method="post">
-                                {{csrf_field()}}
-                                <button class="btn btn-outline-success btn-sm">Done</button>
-                                <?= $task->name ?>
-                                <small class="text-muted"><?= $task->description ?></small>
-                            </form>
-                        </h5>
-                <?php endforeach; ?>
-
-            </div>
-            <div class="col col-2">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTask">New task</button>
-            </div>
-            <div class="col col-5">
-                <h2 class="text-center">Completed Task</h2>
-
-                <?php foreach($TasksDone as $task) : ?>
-                        <h5>
-                            <button class="btn btn-outline-success btn-sm">Done</button>
+            <div class="col-md-6">
+                <h4 class="text-center">Unfinished Task
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#addTask">New Task</button>
+                </h4>
+                <?php foreach ($Tasks as $task) : ?>
+                    <h5>
+                        <form action="{{route('markDone',$task->id)}}" method="post">
+                            {{csrf_field()}}
+                            <button class="btn btn-outline-success btn-sm">Finish</button>
                             <?= $task->name ?>
                             <small class="text-muted"><?= $task->description ?></small>
-                        </h5>
+                        </form>
+                    </h5>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="col-md-6">
+                <h4 class="text-center">Completed Task</h4>
+
+                <?php foreach ($TasksDone as $task) : ?>
+                    <li>
+                        <?= $task->name ?>
+                        <small class="text-muted"><?= $task->description ?></small>
+                    </li>
                 <?php endforeach; ?>
 
             </div>
         </div>
     </div>
 
-
+    <!-- Modal -->
     <div class="modal fade" id="addTask">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form action="{{route('saveTask')}}" method="post">
                     {{csrf_field()}}
                     <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
+                        <h5 class="modal-title">Add a New Task</h5>
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
