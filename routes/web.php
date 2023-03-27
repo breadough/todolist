@@ -17,6 +17,8 @@ use App\Http\Controllers\TaskController;
 Route::get('/', [TaskController::class, 'index']);
 Route::post('/saveTask', [TaskController::class, 'saveTask'])->name('saveTask');
 Route::post('/markDone/{id}', [TaskController::class, 'markDone'])->name('markDone');
+Route::post('/deleteTask/{id}', [TaskController::class, 'deleteTask'])->name('deleteTask');
+Route::post('/restoreTask/{id}', [TaskController::class, 'restoreTask'])->name('restoreTask');
 
 
 // Route::post('/saveTask', [TaskController::class, 'saveTask'])->name('saveTask');

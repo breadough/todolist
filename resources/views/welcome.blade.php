@@ -38,10 +38,20 @@
                 <h4 class="text-center">Completed Task</h4>
 
                 <?php foreach ($TasksDone as $task) : ?>
-                    <li>
-                        <?= $task->name ?>
-                        <small class="text-muted"><?= $task->description ?></small>
-                    </li>
+                    <h5>
+                    <div class="btn-group" role="group">
+                        <form action="{{route('deleteTask',$task->id)}}" method="post">
+                            {{csrf_field()}}
+                            <button class="btn btn-outline-danger btn-sm">Delete</button>
+                        </form>
+                        <form action="{{route('restoreTask',$task->id)}}" method="post">
+                            {{csrf_field()}}
+                            <button class="btn btn-outline-success btn-sm">Restore</button>
+                        </form>
+                    </div>
+                            <?= $task->name ?>
+                            <small class="text-muted"><?= $task->description ?></small>
+                    </h5>
                 <?php endforeach; ?>
 
             </div>

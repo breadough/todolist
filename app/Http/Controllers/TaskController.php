@@ -32,4 +32,21 @@ class TaskController extends Controller
 
         return redirect('/');
     }
+
+    public function deleteTask($id){
+
+        $newTask = Task::find($id);
+        $newTask->delete();
+
+        return redirect('/');
+    }
+
+    public function restoreTask($id){
+
+        $newTask = Task::find($id);
+        $newTask->is_done = 0;
+        $newTask->save();
+
+        return redirect('/');
+    }
 }
