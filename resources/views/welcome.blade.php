@@ -20,7 +20,13 @@
                     <h5>
                         <form action="{{route('markDone',$task->id)}}" method="post">
                             {{csrf_field()}}
-                            <button class="btn btn-outline-success btn-sm">Finish</button>
+                            <?php if($task->priority === 3): ?>
+                                <button class="btn btn-outline-danger btn-sm">Finish</button>
+                            <?php elseif($task->priority === 2): ?>
+                                <button class="btn btn-outline-warning btn-sm">Finish</button>
+                            <?php else: ?>
+                                <button class="btn btn-outline-success btn-sm">Finish</button>
+                            <?php endif; ?>
                             <?= $task->name ?>
                             <small class="text-muted"><?= $task->description ?></small>
                         </form>
